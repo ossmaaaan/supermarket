@@ -2,8 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 
-const api = require('./server/routes/api');
-
 const port = process.env.PORT || 8080;
 
 app = express();
@@ -21,10 +19,10 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.use('/api', api);
-
 app.get('*', (req, res)=>{
     res.sendFile(path.join(__dirname, 'dist/index.html'));
 })
 
-app.listen(port);
+app.listen(port, function(){
+    console.log("Sever is listening in port 8080")
+});
